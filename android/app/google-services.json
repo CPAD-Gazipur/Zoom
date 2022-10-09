@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "679882019032-7o91ipg19uo557hk0dt05ukbomkqmk5v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alaminkarno.zoom_clone",
+            "certificate_hash": "2adeee21798bc3d833907f98158debde82182d5f"
+          }
+        },
+        {
           "client_id": "679882019032-lrcjq5dd9pj1jqdlqnt90k7c71jv358h.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

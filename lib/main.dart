@@ -1,6 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:zoom_clone/resources/auth_methods.dart';
 import 'package:zoom_clone/screens/screens.dart';
 import 'package:zoom_clone/utils/utils.dart';
 
@@ -31,9 +31,22 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/home': (context) => const HomeScreen(),
       },
-      home: FirebaseAuth.instance.currentUser != null
-          ? const HomeScreen()
-          : const LoginScreen(),
+      home: StreamBuilder(
+        stream: AuthMethods().authChanges,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator.adaptive(),
+            );
+          }
+
+          if (snapshot.hasData) {
+            return const HomeScreen();
+          }
+
+          return const LoginScreen();
+        },
+      ),
     );
   }
 }
