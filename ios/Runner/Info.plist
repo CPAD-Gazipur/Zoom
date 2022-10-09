@@ -28,6 +28,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSCameraUsageDescription</key>
+    <string>$(PRODUCT_NAME) needs access to your camera for meetings.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>$(PRODUCT_NAME) needs access to your microphone for meetings.</string>
 	<key>CFBundleURLTypes</key>
     <array>
     	<dict>
