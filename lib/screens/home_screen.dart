@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zoom_clone/utils/utils.dart';
+import 'package:zoom_clone/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -29,8 +30,41 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           Row(
-            children: [],
-          )
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              HomeMeetingButton(
+                onPressed: () {},
+                icon: Icons.videocam,
+                text: 'New Meeting',
+              ),
+              HomeMeetingButton(
+                onPressed: () {},
+                icon: Icons.add_box_rounded,
+                text: 'Join Meeting',
+              ),
+              HomeMeetingButton(
+                onPressed: () {},
+                icon: Icons.calendar_today,
+                text: 'Schedule',
+              ),
+              HomeMeetingButton(
+                onPressed: () {},
+                icon: Icons.arrow_upward_rounded,
+                text: 'Share Screen',
+              ),
+            ],
+          ),
+          const Expanded(
+            child: Center(
+              child: Text(
+                'Create/Join meetings with just a click.',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
