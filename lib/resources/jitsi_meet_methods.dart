@@ -7,6 +7,7 @@ class JitsiMeetMethods {
   final AuthMethods _authMethods = AuthMethods();
 
   void createMeeting({
+    String userName = '',
     required String roomName,
     required String meetingSubject,
     required bool isAudioMuted,
@@ -18,9 +19,16 @@ class JitsiMeetMethods {
       featureFlag.resolution = FeatureFlagVideoResolution
           .MD_RESOLUTION; // Limit video resolution to 360p
 
+      String name;
+      if (userName.isEmpty) {
+        name = _authMethods.user.displayName!;
+      } else {
+        name = userName;
+      }
+
       var options = JitsiMeetingOptions(room: roomName)
         ..subject = meetingSubject
-        ..userDisplayName = _authMethods.user.displayName
+        ..userDisplayName = name
         ..userEmail = _authMethods.user.email
         ..userAvatarURL = _authMethods.user.photoURL
         ..audioMuted = isAudioMuted
