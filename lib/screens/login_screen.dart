@@ -38,8 +38,9 @@ class _LoginScreenState extends State<LoginScreen> {
               bool isSignIn = await _authMethods.signInWithGoogle(context);
 
               if (isSignIn) {
-                // ignore: use_build_context_synchronously
-                Navigator.of(context).pushNamed('/home');
+                if (mounted) {
+                  Navigator.of(context).pushNamed('/home');
+                }
               }
             },
           ),
