@@ -39,11 +39,9 @@ class MyApp extends StatelessWidget {
               child: CircularProgressIndicator.adaptive(),
             );
           }
-
           if (snapshot.hasData) {
             return const HomeScreen();
           }
-
           return const LoginScreen();
         },
       ),
