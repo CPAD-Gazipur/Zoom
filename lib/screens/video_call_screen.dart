@@ -33,13 +33,17 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
   }
 
   _joinMeeting() {
-    _jitsiMeetMethods.createMeeting(
-      roomName: meetingController.text,
-      userName: nameController.text,
-      meetingSubject: '',
-      isAudioMuted: isAudioMuted,
-      isVideoMuted: isVideoMuted,
-    );
+    if (meetingController.text.isNotEmpty) {
+      _jitsiMeetMethods.createMeeting(
+        roomName: meetingController.text,
+        userName: nameController.text,
+        meetingSubject: '',
+        isAudioMuted: isAudioMuted,
+        isVideoMuted: isVideoMuted,
+      );
+    } else {
+      showSnackBar(context, 'Please enter room ID');
+    }
   }
 
   @override
@@ -65,6 +69,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             height: 60,
@@ -97,21 +102,45 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
             ),
           ),
           const SizedBox(height: 20),
-          InkWell(
-            onTap: _joinMeeting,
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'Join',
-                style: TextStyle(
-                  fontSize: 16,
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            margin: const EdgeInsets.symmetric(
+              horizontal: 16,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: InkWell(
+              onTap: _joinMeeting,
+              child: const Center(
+                child: Text(
+                  'Join',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
           ),
           const SizedBox(height: 20),
+          const Padding(
+            padding: EdgeInsets.only(
+              left: 16,
+              bottom: 8,
+              top: 8,
+            ),
+            child: Text(
+              'JOIN OPTIONS',
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
+          ),
           MeetingOption(
-            text: 'Mute Audio',
+            text: 'Don\'t Connect To Audio',
             isMute: isAudioMuted,
             onChanged: (value) {
               setState(() {
@@ -120,7 +149,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
             },
           ),
           MeetingOption(
-            text: 'Turn off Video',
+            text: 'Turn Off My Video',
             isMute: isVideoMuted,
             onChanged: (value) {
               setState(() {
