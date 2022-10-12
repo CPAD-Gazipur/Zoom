@@ -33,16 +33,18 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
   }
 
   _joinMeeting() {
-    if (meetingController.text.isNotEmpty) {
+    if (meetingController.text.isEmpty) {
+      showSnackBar(context, 'Please enter room ID');
+    } else if (nameController.text.isEmpty) {
+      showSnackBar(context, 'Please enter your name');
+    } else {
       _jitsiMeetMethods.createMeeting(
-        roomName: meetingController.text,
+        roomID: meetingController.text,
         userName: nameController.text,
         meetingSubject: '',
         isAudioMuted: isAudioMuted,
         isVideoMuted: isVideoMuted,
       );
-    } else {
-      showSnackBar(context, 'Please enter room ID');
     }
   }
 

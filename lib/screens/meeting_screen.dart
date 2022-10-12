@@ -15,7 +15,7 @@ class MeetingScreen extends StatelessWidget {
     String roomName = (random.nextInt(10000000) + 10000000).toString();
 
     _jitsiMeetMethods.createMeeting(
-      roomName: roomName,
+      roomID: roomName,
       meetingSubject: 'Zoom Meeting',
       isAudioMuted: true,
       isVideoMuted: true,

@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:jitsi_meet/feature_flag/feature_flag.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:zoom_clone/resources/auth_methods.dart';
+import 'package:zoom_clone/resources/firestore_methods.dart';
 
 class JitsiMeetMethods {
   final AuthMethods _authMethods = AuthMethods();
+  final FireStoreMethods _fireStoreMethods = FireStoreMethods();
 
   void createMeeting({
     String userName = '',
-    required String roomName,
+    required String roomID,
     required String meetingSubject,
     required bool isAudioMuted,
     required bool isVideoMuted,
@@ -26,7 +28,7 @@ class JitsiMeetMethods {
         name = userName;
       }
 
-      var options = JitsiMeetingOptions(room: roomName)
+      var options = JitsiMeetingOptions(room: roomID)
         ..subject = meetingSubject
         ..userDisplayName = name
         ..userEmail = _authMethods.user.email
@@ -34,6 +36,7 @@ class JitsiMeetMethods {
         ..audioMuted = isAudioMuted
         ..videoMuted = isVideoMuted;
 
+      _fireStoreMethods.addMeetingHistory(meetingSubject, roomID);
       await JitsiMeet.joinMeeting(options);
     } catch (error) {
       debugPrint("Error: $error");
