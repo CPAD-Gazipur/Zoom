@@ -47,4 +47,12 @@ class AuthMethods {
     }
     return result;
   }
+
+  void signOut() {
+    try {
+      _auth.signOut();
+    } catch (e) {
+      debugPrint('ERROR: $e');
+    }
+  }
 }

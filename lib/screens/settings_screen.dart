@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:zoom_clone/resources/auth_methods.dart';
 import 'package:zoom_clone/widgets/custom_button.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -9,7 +10,9 @@ class SettingsScreen extends StatelessWidget {
     return Center(
       child: CustomButton(
         text: 'Logout',
-        onPressed: () {},
+        onPressed: () {
+          AuthMethods().signOut();
+        },
         padding: 5.0,
         weight: 200,
       ),
