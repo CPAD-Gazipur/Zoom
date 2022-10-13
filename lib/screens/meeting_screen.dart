@@ -22,29 +22,38 @@ class _MeetingScreenState extends State<MeetingScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          contentPadding: const EdgeInsets.only(
+            top: 20.0,
+            left: 5.0,
+            right: 5.0,
+            bottom: 10.0,
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               SizedBox(
                 height: 60,
-                child: TextField(
-                  controller: meetingNameController,
-                  maxLines: 1,
-                  keyboardType: TextInputType.text,
-                  textAlign: TextAlign.center,
-                  decoration: const InputDecoration(
-                    fillColor: secondaryBackgroundColor,
-                    filled: true,
-                    border: InputBorder.none,
-                    hintText: 'Meeting Name',
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: TextField(
+                    controller: meetingNameController,
+                    maxLines: 1,
+                    keyboardType: TextInputType.text,
+                    textAlign: TextAlign.center,
+                    decoration: const InputDecoration(
+                      fillColor: secondaryBackgroundColor,
+                      filled: true,
+                      border: InputBorder.none,
+                      hintText: 'Meeting Name',
+                    ),
                   ),
                 ),
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: buttonColor,
-                ),
-                child: const Text("Start"),
+              CustomButton(
+                text: 'Start',
+                padding: 5.0,
+                height: 40,
+                weight: 150,
                 onPressed: () {
                   if (meetingNameController.text.isNotEmpty) {
                     Navigator.pop(context);
@@ -66,7 +75,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
                     );
                   }
                 },
-              )
+              ),
             ],
           ),
         );

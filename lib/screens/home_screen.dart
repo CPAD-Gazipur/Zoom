@@ -19,14 +19,19 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> pages = [
-    MeetingScreen(),
+    const MeetingScreen(),
     const MeetingHistoryScreen(),
     const Center(
       child: Text('Contacts'),
     ),
-    const Center(
-      child: Text('Settings'),
-    ),
+    const SettingsScreen(),
+  ];
+
+  List<String> appBarTitles = [
+    'Meet & Chat',
+    'Meetings',
+    'Contacts',
+    'Settings',
   ];
 
   @override
@@ -34,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text('Meet & Chat'),
+        title: Text(appBarTitles[_currentPage]),
         centerTitle: true,
         backgroundColor: backgroundColor,
       ),
