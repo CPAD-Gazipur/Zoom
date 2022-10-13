@@ -40,9 +40,9 @@ class _MeetingHistoryScreenState extends State<MeetingHistoryScreen> {
                         Text(
                             'Meeting ID: ${meetingDetails.docs[index]['roomID']}'),
                         Text(
-                          timeago.format(meetingDetails.docs[index]
-                                  ['createdDate']
-                              .toDate()),
+                          timeago.format(
+                            meetingDetails.docs[index]['createdDate'].toDate(),
+                          ),
                         ),
                       ],
                     ),

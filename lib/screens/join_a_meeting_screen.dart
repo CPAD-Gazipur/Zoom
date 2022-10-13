@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
-import 'package:zoom_clone/resources/auth_methods.dart';
 import 'package:zoom_clone/resources/resources.dart';
 import 'package:zoom_clone/utils/utils.dart';
 import 'package:zoom_clone/widgets/widgets.dart';
 
-class VideoCallScreen extends StatefulWidget {
-  const VideoCallScreen({Key? key}) : super(key: key);
+class JoinAMeetingScreen extends StatefulWidget {
+  const JoinAMeetingScreen({Key? key}) : super(key: key);
 
   @override
-  State<VideoCallScreen> createState() => _VideoCallScreenState();
+  State<JoinAMeetingScreen> createState() => _JoinAMeetingScreenState();
 }
 
-class _VideoCallScreenState extends State<VideoCallScreen> {
+class _JoinAMeetingScreenState extends State<JoinAMeetingScreen> {
   final AuthMethods _authMethods = AuthMethods();
 
   final JitsiMeetMethods _jitsiMeetMethods = JitsiMeetMethods();

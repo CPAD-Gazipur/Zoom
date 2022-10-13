@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginScreen(),
         '/home': (context) => const HomeScreen(),
-        '/video-call': (context) => const VideoCallScreen(),
+        '/join-meeting': (context) => const JoinAMeetingScreen(),
       },
       home: StreamBuilder(
         stream: AuthMethods().authChanges,

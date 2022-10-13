@@ -10,6 +10,10 @@ class FireStoreMethods {
       .collection('users')
       .doc(_auth.currentUser!.uid)
       .collection('meetings')
+      .orderBy(
+        'createdDate',
+        descending: true,
+      )
       .snapshots();
 
   void addMeetingHistory(String meetingName, String roomID) async {
