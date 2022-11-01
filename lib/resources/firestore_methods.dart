@@ -19,6 +19,9 @@ class FireStoreMethods {
   Stream<QuerySnapshot<Map<String, dynamic>>> get userList =>
       _firestore.collection('users').snapshots();
 
+  Stream<DocumentSnapshot<Map<String, dynamic>>> get userInfo =>
+      _firestore.collection('users').doc(_auth.currentUser!.uid).snapshots();
+
   void addMeetingHistory(String meetingName, String roomID) async {
     try {
       await _firestore
