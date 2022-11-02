@@ -12,6 +12,7 @@ class ContactScreen extends StatefulWidget {
 
 class _ContactScreenState extends State<ContactScreen> {
   late TextEditingController searchController;
+  String searchQuery = '';
 
   @override
   void initState() {
@@ -43,6 +44,12 @@ class _ContactScreenState extends State<ContactScreen> {
               hintText: 'Search',
               suffixIcon: Icon(Icons.search),
             ),
+            onChanged: (value) {
+              setState(() {
+                searchQuery = value;
+              });
+              debugPrint('Query: $searchQuery');
+            },
           ),
         ),
         StreamBuilder(
@@ -59,23 +66,48 @@ class _ContactScreenState extends State<ContactScreen> {
                   shrinkWrap: true,
                   itemCount: userList.docs.length,
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: ListTile(
-                        tileColor: secondaryBackgroundColor,
-                        title: Text(
-                          '${userList.docs[index]['userName']}',
-                        ),
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(
-                            userList.docs[index]['userImage'],
+                    if (searchQuery.isEmpty) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: ListTile(
+                          tileColor: secondaryBackgroundColor,
+                          title: Text(
+                            '${userList.docs[index]['userName']}',
+                          ),
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                              userList.docs[index]['userImage'],
+                            ),
+                          ),
+                          trailing: const Icon(
+                            Icons.call,
                           ),
                         ),
-                        trailing: const Icon(
-                          Icons.call,
+                      );
+                    } else if (userList.docs[index]['userName']
+                        .toString()
+                        .toLowerCase()
+                        .contains(searchQuery.toLowerCase().toString())) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: ListTile(
+                          tileColor: secondaryBackgroundColor,
+                          title: Text(
+                            '${userList.docs[index]['userName']}',
+                          ),
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                              userList.docs[index]['userImage'],
+                            ),
+                          ),
+                          trailing: const Icon(
+                            Icons.call,
+                          ),
                         ),
-                      ),
-                    );
+                      );
+                    } else {
+                      return Container();
+                    }
                   },
                 );
               }
