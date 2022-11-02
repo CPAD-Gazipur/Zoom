@@ -16,8 +16,10 @@ class FireStoreMethods {
       )
       .snapshots();
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> get userList =>
-      _firestore.collection('users').snapshots();
+  Stream<QuerySnapshot<Map<String, dynamic>>> get userList => _firestore
+      .collection('users')
+      .where('uID', isNotEqualTo: _auth.currentUser!.uid)
+      .snapshots();
 
   Stream<DocumentSnapshot<Map<String, dynamic>>> get userInfo =>
       _firestore.collection('users').doc(_auth.currentUser!.uid).snapshots();
